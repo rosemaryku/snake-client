@@ -17,8 +17,8 @@ const connect = function () {
     console.log("Successfully connected to game server!");
     conn.write("Name: RMK");
 
-    setTimeout(() => conn.write("Move: up"), 100);
-    setInterval(() => conn.write("Move: up"), 100); // This will crash program
+    // setTimeout(() => conn.write("Move: up"), 100);
+    // setInterval(() => conn.write("Move: up"), 100); // This will crash program
   });
 
   // Event handling for when program is idling
