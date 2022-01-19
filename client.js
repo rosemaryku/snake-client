@@ -7,11 +7,16 @@ const connect = function () {
     port: 50541,
   });
 
-  // interpret incoming data as text
+  // Event handler for when connection is established
+  conn.on("connect", () => {
+    console.log("Successfully connected to game server!");
+    conn.write("Name: RMK");
+  });
+
+  // Interpret incoming data as text
   conn.setEncoding("utf8");
 
-  // conn.on("closes", () => {});
-
+  // Event handling for when program is idling
   conn.on("data", (input) => {
     console.log(input);
   });
