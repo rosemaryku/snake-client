@@ -3,26 +3,33 @@ const net = require("net");
 
 const connect = function () {
   const conn = net.createConnection({
-    host: "localhost",
+    // host: "localhost",
+    host: "165.227.47.243",
     port: 50541,
-  });
-
-  // Event handler for when connection is established
-  conn.on("connect", () => {
-    console.log("Successfully connected to game server!");
-    conn.write("Name: RMK");
   });
 
   // Interpret incoming data as text
   conn.setEncoding("utf8");
+
+  // Event handler for when connection is established
+
+  conn.on("connect", () => {
+    console.log("Successfully connected to game server!");
+    conn.write("Name: RMK");
+
+    setTimeout(() => conn.write("Move: up"), 100);
+    setInterval(() => conn.write("Move: up"), 100); // This will crash program
+  });
 
   // Event handling for when program is idling
   conn.on("data", (input) => {
     console.log(input);
   });
 
+  // Conn object represents the client-server connection
   return conn;
-  // Conn object that Node returns represented the connection that you have with the server
 };
+
+console.log("Connecting ...");
 
 module.exports = { connect };
